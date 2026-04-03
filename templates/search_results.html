@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Available Rooms - Hotel Reservation{% endblock %}
+
+{% block content %}
+<nav style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('index') }}" style="color: #0066cc; text-decoration: none;">← Back to Search</a>
+</nav>
+
+<div class="content">
+    <h2 style="color: #0066cc; margin-bottom: 1.5rem;">Available Rooms</h2>
+    
+    <div style="background-color: #f0f8ff; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 0.5rem;"><strong>Check-in:</strong> {{ check_in }}</div>
+        <div><strong>Check-out:</strong> {{ check_out }}</div>
+    </div>
+    
+    {% if available_rooms %}
+        {% for room_type, details in available_rooms.items() %}
+        <div class="room-card">
+            <div class="room-info">
+                <h3>{{ room_type }} Room</h3>
+                <p>${{ details.price_per_night }} per night</p>
+            </div>
+            
+            <div class="room-price">
+                <div class="price">${{ "%.2f"|format(details.total_price) }}</div>
+                <p>{{ details.nights }} nights</p>
+            </div>
+        </div>
+        
+        <a href="{{ url_for('book_room', room_type=room_type, check_in=check_in, check_out=check_out) }}" 
+           style="display: block; background-color: #0066cc; color: white; padding: 0.75rem 1.5rem; 
+                  border-radius: 4px; text-align: center; text-decoration: none; margin-bottom: 1rem;
+                  font-weight: 600; cursor: pointer; transition: background-color 0.2s;">
+            Select {{ room_type }} Room
+        </a>
+        {% endfor %}
+    {% else %}
+        <div style="background-color: #fee; border: 1px solid #c33; padding: 1rem; border-radius: 4px; color: #c33;">
+            <strong>No rooms available</strong><br>
+            Please try different dates.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

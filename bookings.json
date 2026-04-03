@@ -1,0 +1,24 @@
+[
+  {
+    "reference_number": "471E227B",
+    "room_type": "Standard",
+    "check_in": "2026-04-11",
+    "check_out": "2026-04-25",
+    "guest_name": "shun",
+    "guest_email": "shun@gmail.com",
+    "total_price": 1400,
+    "status": "confirmed",
+    "booked_at": "2026-04-03T07:30:11.920462"
+  },
+  {
+    "reference_number": "D5F6C306",
+    "room_type": "Standard",
+    "check_in": "2026-04-03",
+    "check_out": "2026-04-04",
+    "guest_name": "John Doe",
+    "guest_email": "john@example.com",
+    "total_price": 100,
+    "status": "confirmed",
+    "booked_at": "2026-04-03T07:33:01.890623"
+  }
+]

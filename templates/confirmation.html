@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Confirmed - Hotel Reservation{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <h2 style="color: #3c3; margin-bottom: 0.5rem;">✓ Booking Confirmed!</h2>
+        <p>Your reservation has been successfully created.</p>
+    </div>
+    
+    <div style="background-color: #e6f2ff; border: 2px dashed #0066cc; padding: 1.5rem; 
+                border-radius: 4px; margin: 1.5rem 0; text-align: center;">
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">Reference Number</p>
+        <div style="font-size: 28px; font-weight: bold; color: #0066cc; font-family: monospace; letter-spacing: 2px;">
+            {{ booking.reference_number }}
+        </div>
+    </div>
+    
+    <div style="background-color: #f0f8ff; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+        <h3 style="color: #0066cc; margin-bottom: 1rem;">Booking Details</h3>
+        
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+            <strong>Guest Name:</strong>
+            <span>{{ booking.guest_name }}</span>
+        </div>
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+            <strong>Email:</strong>
+            <span>{{ booking.guest_email }}</span>
+        </div>
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+            <strong>Room Type:</strong>
+            <span>{{ booking.room_type }}</span>
+        </div>
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+            <strong>Check-in:</strong>
+            <span>{{ booking.check_in }}</span>
+        </div>
+        <div style="margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
+            <strong>Check-out:</strong>
+            <span>{{ booking.check_out }}</span>
+        </div>
+        <div style="border-top: 1px solid #999; padding-top: 0.75rem; margin-top: 0.75rem; display: flex; justify-content: space-between;">
+            <strong style="font-size: 1.1rem;">Total Price:</strong>
+            <span style="font-size: 1.1rem; color: #0066cc; font-weight: 700;">${{ "%.2f"|format(booking.total_price) }}</span>
+        </div>
+    </div>
+    
+    <div style="background-color: #e6f2ff; border-left: 4px solid #0066cc; padding: 1rem; margin: 1.5rem 0; border-radius: 4px;">
+        <p style="margin: 0;">
+            <strong>Keep your reference number safe.</strong> You'll need it to cancel your booking or for check-in.
+        </p>
+    </div>
+    
+    <div style="text-align: center; margin: 2rem 0;">
+        <a href="{{ url_for('index') }}" style="background-color: #0066cc; color: white; padding: 0.75rem 1.5rem; 
+                border-radius: 4px; text-decoration: none; font-weight: 600; display: inline-block;">
+            Book Another Room
+        </a>
+    </div>
+</div>
+{% endblock %}

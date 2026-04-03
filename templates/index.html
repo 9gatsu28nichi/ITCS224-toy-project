@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Search Rooms - Hotel Reservation{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h2 style="color: #0066cc; margin-bottom: 1.5rem;">Find Your Perfect Room</h2>
+    
+    <form method="POST" action="{{ url_for('search') }}">
+        <div class="form-group">
+            <label for="check_in">Check-in Date</label>
+            <input type="date" id="check_in" name="check_in" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="check_out">Check-out Date</label>
+            <input type="date" id="check_out" name="check_out" required>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 1rem;">Search Available Rooms</button>
+    </form>
+</div>
+
+<div class="content" style="text-align: center;">
+    <h3 style="color: #0066cc; margin-bottom: 1rem;">Already Have a Booking?</h3>
+    <a href="{{ url_for('cancel_page') }}" style="background-color: #666; color: white; padding: 0.75rem 1.5rem; 
+            border-radius: 4px; text-decoration: none; font-weight: 600; display: inline-block;">
+        Cancel a Booking
+    </a>
+</div>
+
+<script>
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('check_in').setAttribute('min', today);
+    document.getElementById('check_out').setAttribute('min', today);
+</script>
+{% endblock %}

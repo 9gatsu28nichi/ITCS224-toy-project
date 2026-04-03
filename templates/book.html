@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Your Booking - Hotel Reservation{% endblock %}
+
+{% block content %}
+<nav style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('index') }}" style="color: #0066cc; text-decoration: none;">← Start Over</a>
+</nav>
+
+<div class="content">
+    <h2 style="color: #0066cc; margin-bottom: 1.5rem;">Complete Your Booking</h2>
+    
+    <div style="background-color: #f0f8ff; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 0.5rem;"><strong>Room Type:</strong> {{ room_type }}</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Check-in:</strong> {{ check_in }}</div>
+        <div style="margin-bottom: 0.5rem;"><strong>Check-out:</strong> {{ check_out }}</div>
+        <div style="border-top: 1px solid #999; padding-top: 0.5rem; margin-top: 0.5rem;">
+            <strong style="font-size: 1.1rem;">Total Price:</strong>
+            <span style="font-size: 1.1rem; color: #0066cc; font-weight: 700; float: right;">${{ "%.2f"|format(total_price) }}</span>
+        </div>
+    </div>
+    
+    <form method="POST" action="{{ url_for('confirm_booking') }}">
+        <input type="hidden" name="room_type" value="{{ room_type }}">
+        <input type="hidden" name="check_in" value="{{ check_in }}">
+        <input type="hidden" name="check_out" value="{{ check_out }}">
+        
+        <div class="form-group">
+            <label for="guest_name">Your Name</label>
+            <input type="text" id="guest_name" name="guest_name" placeholder="John Doe" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="guest_email">Email Address</label>
+            <input type="email" id="guest_email" name="guest_email" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Confirm Booking</button>
+    </form>
+</div>
+{% endblock %}

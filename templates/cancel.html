@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Cancel Booking - Hotel Reservation{% endblock %}
+
+{% block content %}
+<nav style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('index') }}" style="color: #0066cc; text-decoration: none;">← Back to Home</a>
+</nav>
+
+<div class="content">
+    <h2 style="color: #0066cc; margin-bottom: 1.5rem;">Cancel Your Booking</h2>
+    
+    {% if error %}
+    <div style="background-color: #fee; border: 1px solid #c33; color: #c33; padding: 1rem; 
+                border-radius: 4px; margin-bottom: 1.5rem;">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+    
+    <p style="margin-bottom: 1.5rem; color: #666;">
+        Enter your booking reference number to cancel your reservation.
+    </p>
+    
+    <form method="POST" action="{{ url_for('process_cancellation') }}">
+        <div class="form-group">
+            <label for="reference_number">Reference Number</label>
+            <input type="text" id="reference_number" name="reference_number" 
+                   placeholder="e.g., ABC12345" required 
+                   style="text-transform: uppercase; font-family: monospace; font-size: 1.1rem;">
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 1rem;">Cancel Booking</button>
+    </form>
+</div>
+{% endblock %}
